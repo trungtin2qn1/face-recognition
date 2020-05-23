@@ -5,6 +5,9 @@ prepare:
 	mkdir dataset
 	mkdir trainer
 
+package:
+	pip3 install -r requirements.txt
+
 dataset-static: 
 	python3 dataset-static.py image cascade/haarcascade_frontalface_default.xml
 
@@ -21,4 +24,4 @@ list-camera:
 	v4l2-ctl --list-devices
 
 local-run:
-	python3 main.py cascade/haarcascade_frontalface_default.xml dataset/ 100 0
+	python3 main.py
