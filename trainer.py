@@ -4,15 +4,10 @@ from PIL import Image
 import os
 import sys
 
-datasetPath = sys.argv[1] # dataset
-cascPath = sys.argv[2] # cascade/haarcascade_frontalface_default.xml
+# datasetPath = sys.argv[1] # dataset
+# cascPath = sys.argv[2] # cascade/haarcascade_frontalface_default.xml
 
-# Path for face image database
-path = datasetPath
-recognizer = cv2.face.LBPHFaceRecognizer_create()
-detector = cv2.CascadeClassifier(cascPath)
 # function to get the images and label data
-
 
 def getImagesAndLabels(path):
     imagePaths = [os.path.join(path, f) for f in os.listdir(path)]
@@ -28,12 +23,16 @@ def getImagesAndLabels(path):
             ids.append(id)
     return faceSamples, ids
 
-
-print("\n [INFO] Training faces. It will take a few seconds. Wait ...")
-faces, ids = getImagesAndLabels(path)
-recognizer.train(faces, np.array(ids))
-# Save the model into trainer/trainer.yml
-recognizer.write('trainer/trainer.yml')
-# Print the numer of faces trained and end program
-print("\n [INFO] {0} faces trained. Exiting Program".format(
-    len(np.unique(ids))))
+def trainData(datasetPath, cascPath):
+    # Path for face image database
+    path = datasetPath
+    recognizer = cv2.face.LBPHFaceRecognizer_create()
+    detector = cv2.CascadeClassifier(cascPath)
+    print("\n [INFO] Training faces. It will take a few seconds. Wait ...")
+    faces, ids = getImagesAndLabels(path)
+    recognizer.train(faces, np.array(ids))
+    # Save the model into trainer/trainer.yml
+    recognizer.write('trainer/trainer.yml')
+    # Print the numer of faces trained and end program
+    print("\n [INFO] {0} faces trained. Exiting Program".format(
+        len(np.unique(ids))))

@@ -9,10 +9,16 @@ dataset-static:
 	python3 dataset-static.py image cascade/haarcascade_frontalface_default.xml
 
 dataset-cam:
-	python3 dataset-cam.py cascade/haarcascade_frontalface_default.xml dataset/ 100
+	python3 dataset-cam.py cascade/haarcascade_frontalface_default.xml dataset/ 1000 0
 
 train:
 	python3 trainer.py dataset cascade/haarcascade_frontalface_default.xml
 
-local-run:
+face-recognize:
 	python3 main.py trainer/trainer.yml cascade/haarcascade_frontalface_default.xml
+
+list-camera:
+	v4l2-ctl --list-devices
+
+local-run:
+	python3 main.py cascade/haarcascade_frontalface_default.xml dataset/ 100 0
