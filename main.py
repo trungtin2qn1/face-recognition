@@ -29,8 +29,11 @@ class Main:
             elif int(cmd) == 2:
                 recognition = Recognition(c.trainerPath + 'trainer.yml', c.cascPath, c.webcamPos)
                 recognition.recognize()
+    
+    def initDB(self):
+        return
 
 # Run main here:
-
 main = Main()
-main.execute()
+main.initDB()
+# main.execute()
