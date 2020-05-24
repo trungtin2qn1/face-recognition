@@ -46,6 +46,13 @@ class Recognition:
                 if (confidence < 100):
                     id = names[id]
                     confidence = "  {0}%".format(round(100 - confidence))
+
+                    # TODO: @dac
+                    # 
+
+                    if (confidence > 50):
+                        pass
+
                 else:
                     id = "unknown"
                     confidence = "  {0}%".format(round(100 - confidence))

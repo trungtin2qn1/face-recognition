@@ -7,8 +7,8 @@ class Config:
     def load(self):
         self.cascPath = getEnv('cascPath', 'cascade/haarcascade_frontalface_default.xml')
         self.datasetPath = getEnv('datasetPath', 'dataset/')
-        self.lengthSample = int(getEnv('lengthSampleStr', '100'), base=10)
-        self.webcamPos = int(getEnv('webcamPosStr', '2'), base=10)
+        self.lengthSample = int(getEnv('lengthSampleStr', '1000'), base=10)
+        self.webcamPos = int(getEnv('webcamPosStr', '0'), base=10)
         self.trainerPath =  getEnv('trainerPath', 'trainer/') 
 
     def getCascPath(self):
