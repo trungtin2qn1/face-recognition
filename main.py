@@ -5,8 +5,8 @@ from config.config import Config
 from recognition.dataset import Dataset
 from recognition.trainer import Trainer
 from recognition.recognition import Recognition
-from db.db import DB
 from db.db import DbConnector
+from models.user import User
 
 class Main:
     def __init__(self):
@@ -36,21 +36,29 @@ class Main:
 
     def initDB(self):
         dbConnector = DbConnector()
-        print(dbConnector)
         dbConnector.open('./leveldb')
-        print(dbConnector.get('key'))
         return
 
-    def testThread(self):
+    # def testThread(self):
         
-        return
+    #     return
+
+    def insertUser(self, id, name):
+        user = User()
+        user.insertToDB(id, name)
+        return user
 
     def closeDB(self):
         dbConnector = DbConnector()
-        dbConnector.close()
+        dbConnector.getInstance().close()
         return
+
+    def getUser(self, id):
+        user = User()
+        return user.getByID(id)
 
 # Run main here:
 main = Main()
 main.initDB()
-# main.execute()
+main.execute()
+main.closeDB()

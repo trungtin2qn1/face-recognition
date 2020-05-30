@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import os
 import sys
+from models.user import User
 
 class Recognition:
 
@@ -18,8 +19,9 @@ class Recognition:
 
         #iniciate id counter
         id = 0
-        # names related to ids: example ==> Tin: id=1,  etc
-        names = ['None', 'Tin', 'Paula', 'Ilza', 'Z', 'W'] 
+        user = User()
+        # # names related to ids: example ==> Tin: id=1,  etc
+        # names = ['None', 'Tin', 'Paula', 'Ilza', 'Z', 'W'] 
         # Initialize and start realtime video capture
         cam = cv2.VideoCapture(self.webcamPos)
         cam.set(3, 640) # set video widht
@@ -42,24 +44,29 @@ class Recognition:
                 cv2.rectangle(img, (x,y), (x+w,y+h), (0,255,0), 2)
                 id, confidence = recognizer.predict(gray[y:y+h,x:x+w])
         
+                name = ''
+
                 # If confidence is less them 100 ==> "0" : perfect match 
                 if (confidence < 100):
-                    id = names[id]
+                    # id = names[id]
+
                     confidence = "  {0}%".format(round(100 - confidence))
+                    name = user.getByID(str(id))["name"]
 
                     # TODO: @dac
                     # 
 
-                    if (confidence > 50):
-                        pass
+                    # if (confidence > 50):
+                    #     pass
 
                 else:
-                    id = "unknown"
+                    name = "unknown"
                     confidence = "  {0}%".format(round(100 - confidence))
-        
+                    
+
                 cv2.putText(
                     img, 
-                    str(id), 
+                    name, 
                     (x+5,y-5), 
                     font, 
                     1, 

@@ -12,7 +12,7 @@ dataset-static:
 	python3 dataset-static.py image cascade/haarcascade_frontalface_default.xml
 
 dataset-cam:
-	python3 dataset-cam.py cascade/haarcascade_frontalface_default.xml dataset/ 1000 0
+	python3 dataset-cam.py cascade/haarcascade_frontalface_default.xml dataset/ 100 0
 
 train:
 	python3 trainer.py dataset cascade/haarcascade_frontalface_default.xml
