@@ -5,8 +5,6 @@ class DbConnector:
     
     instance = None
 
-    # conn = None
-
     @staticmethod
     def getInstance():
         if DbConnector.instance == None:
@@ -20,6 +18,7 @@ class DbConnector:
 
     def open(self, path):
         self.conn = plyvel.DB(path, create_if_missing=True)
+
         return
 
     def close(self):

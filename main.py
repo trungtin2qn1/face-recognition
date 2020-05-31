@@ -6,7 +6,7 @@ from recognition.dataset import Dataset
 from recognition.trainer import Trainer
 from recognition.recognition import Recognition
 from db.db import DbConnector
-from models.user import User
+from services.video import Video
 
 class Main:
     def __init__(self):
@@ -39,23 +39,10 @@ class Main:
         dbConnector.open('./leveldb')
         return
 
-    # def testThread(self):
-        
-    #     return
-
-    def insertUser(self, id, name):
-        user = User()
-        user.insertToDB(id, name)
-        return user
-
     def closeDB(self):
         dbConnector = DbConnector()
         dbConnector.getInstance().close()
         return
-
-    def getUser(self, id):
-        user = User()
-        return user.getByID(id)
 
 # Run main here:
 main = Main()

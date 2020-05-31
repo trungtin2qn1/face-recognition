@@ -3,6 +3,7 @@ import numpy as np
 import os
 import sys
 from models.user import User
+from services.video import Video
 
 class Recognition:
 
@@ -19,9 +20,10 @@ class Recognition:
 
         #iniciate id counter
         id = 0
-        user = User()
         # # names related to ids: example ==> Tin: id=1,  etc
-        # names = ['None', 'Tin', 'Paula', 'Ilza', 'Z', 'W'] 
+        # names = ['None', 'Tin', 'Paula', 'Ilza', 'Z', 'W']
+        user = User()
+        users = user.getAllUsers()
         # Initialize and start realtime video capture
         cam = cv2.VideoCapture(self.webcamPos)
         cam.set(3, 640) # set video widht
@@ -40,6 +42,7 @@ class Recognition:
                 minNeighbors = 5,
                 minSize = (int(minW), int(minH)),
             )
+            numb = 0
             for(x,y,w,h) in faces:
                 cv2.rectangle(img, (x,y), (x+w,y+h), (0,255,0), 2)
                 id, confidence = recognizer.predict(gray[y:y+h,x:x+w])
@@ -50,14 +53,14 @@ class Recognition:
                 if (confidence < 100):
                     # id = names[id]
 
+                    numb = round(100 - confidence)
                     confidence = "  {0}%".format(round(100 - confidence))
-                    name = user.getByID(str(id))["name"]
+                    name = users[str(id)]["name"]
+                    # name = User.getByID(str(id))["name"]
 
                     # TODO: @dac
                     # 
 
-                    # if (confidence > 50):
-                    #     pass
 
                 else:
                     name = "unknown"
@@ -87,7 +90,12 @@ class Recognition:
             k = cv2.waitKey(10) & 0xff # Press 'ESC' for exiting video
             if k == 27:
                 break
-        # Do a bit of cleanup
-        print("\n [INFO] Exiting Program and cleanup stuff")
-        cam.release()
-        cv2.destroyAllWindows()
+            if (numb > 10):
+                # Do a bit of cleanup
+                print("\n [INFO] Exiting Program and cleanup stuff")
+                cam.release()
+                cv2.destroyAllWindows()
+                video = Video('./static/video.mp4')
+                video.make(self.webcamPos)
+                # video.make(2)
+                break

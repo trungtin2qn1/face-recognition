@@ -34,3 +34,11 @@ class User:
 
     def fromJSON(self, jsonObject):
         return json.loads(jsonObject)
+
+    def getAllUsers(self):
+        users = {}
+        dbConnector = DbConnector()
+        for key, value in dbConnector.getInstance().conn:
+            user = User()
+            users[str(key, 'utf-8')] = user.decode(value)
+        return users

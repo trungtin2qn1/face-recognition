@@ -2,16 +2,24 @@ import cv2
 import os
 import sys
 import numpy as np
+import multiprocessing
+import time
+import threading
 
 # For each person, enter one numeric face id
+
+def makeVideo(cv2):
+    # Press Q on keyboard to stop recording
+    cv2.waitKey(1)
+    # if  & 0xFF == ord('q'):
 
 class Video:
     def __init__(self, nameVideo):
         self.nameVideo = nameVideo
 
-    def make(self):
+    def make(self, videoPos):
         # Create a VideoCapture object
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture(videoPos)
 
         # Check if camera opened successfully
         if (cap.isOpened() == False): 
@@ -30,23 +38,22 @@ class Video:
 
             if ret == True: 
     
-            # Write the frame into the file 'output.avi'
-            out.write(frame)
+                # Write the frame into the file 'output.avi'
+                out.write(frame)
 
-            # Display the resulting frame    
-            cv2.imshow('frame',frame)
+                # Display the resulting frame    
+                cv2.imshow('frame',frame)
 
-            # Press Q on keyboard to stop recording
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
+                if cv2.waitKey(1) & 0xFF == ord('q'):
+                    break
 
             # Break the loop
             else:
-            break  
+                break  
 
-            # When everything done, release the video capture and video write objects
-            cap.release()
-            out.release()
+        # When everything done, release the video capture and video write objects
+        cap.release()
+        out.release()
 
-            # Closes all the frames
-            cv2.destroyAllWindows() 
+        # Closes all the frames
+        cv2.destroyAllWindows()
