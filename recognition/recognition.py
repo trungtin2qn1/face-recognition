@@ -56,11 +56,6 @@ class Recognition:
                     numb = round(100 - confidence)
                     confidence = "  {0}%".format(round(100 - confidence))
                     name = users[str(id)]["name"]
-                    # name = User.getByID(str(id))["name"]
-
-                    # TODO: @dac
-                    # 
-
 
                 else:
                     name = "unknown"
@@ -97,5 +92,4 @@ class Recognition:
                 cv2.destroyAllWindows()
                 video = Video('./static/video.mp4')
                 video.make(self.webcamPos)
-                # video.make(2)
                 break
