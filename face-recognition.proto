@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package protobuf;
+
+//FaceRecognizeService ...
+service FaceRecognizeService {
+    rpc makeDataset(MakeDataSetRequest) returns (MakeDataSetResponse) {}
+    rpc train(TrainRequest) returns (TrainResponse) {}
+    rpc faceRecognize(FaceRecognizeRequest) returns (FaceRecognizeResponse) {}
+}
+
+//MakeDataSetRequest ...
+message MakeDataSetRequest {
+    uint32 webcamPos = 1;
+}
+
+//MakeDataSetResponse ...
+message MakeDataSetResponse {
+    string msg = 1;
+}
+
+//TrainRequest ...
+message TrainRequest {
+}
+
+//TrainResponse ...
+message TrainResponse {
+    string msg = 1;
+}
+
+//FaceRecognizeRequest ...
+message FaceRecognizeRequest {
+    string webcamPos = 1;
+}
+
+//FaceRecognizeResponse ...
+message FaceRecognizeResponse {
+    string msg = 1;
+}

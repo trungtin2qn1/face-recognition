@@ -4,12 +4,13 @@ import os
 import sys
 from models.user import User
 from services.video import Video
+from datetime import datetime
 
 class Recognition:
 
-    def __init__(self, trainerPath, cascPath, webcamPos):
-        self.trainerPath = trainerPath
-        self.cascPath = cascPath
+    def __init__(self, webcamPos):
+        self.trainerPath = "trainer/trainer.yml"
+        self.cascPath = "cascade/haarcascade_frontalface_default.xml"
         self.webcamPos = webcamPos
 
     def recognize(self):
@@ -90,6 +91,20 @@ class Recognition:
                 print("\n [INFO] Exiting Program and cleanup stuff")
                 cam.release()
                 cv2.destroyAllWindows()
-                video = Video('./static/video.mp4')
-                video.make(self.webcamPos)
+
+                #TODO:
+                # Handle here: 
+                # Get user id
+                now = datetime.now()
+                current_time = now.strftime("%D-%H:%M:%S")
+                videoName = user.name + "_" + current_time
+
+                video = Video(videoName)
+                subWebcamPos = -1
+                if self.webcamPos == 0:
+                    subWebcamPos = 2
+                if self.webcamPos == 2:
+                    subWebcamPos = 0
+                video.make(subWebcamPos)
+
                 break

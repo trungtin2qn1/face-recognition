@@ -4,11 +4,12 @@ import sys
 from models.user import User
 
 class Dataset:
-    def __init__(self, cascPath, datasetPath, lengthSample, webcamPos):
-        self.lengthSample = lengthSample
-        self.cascPath = cascPath
+
+    def __init__(self, webcamPos):
         self.webcamPos = webcamPos
-        self.datasetPath = datasetPath
+        self.lengthSample = 50
+        self.datasetPath = "dataset/"
+        self.cascPath = "cascade/haarcascade_frontalface_default.xml"
     
     def make(self):
 

@@ -7,10 +7,10 @@ import sys
 #trainer/
 
 class Trainer:
-    def __init__(self, datasetPath, cascPath, trainerPath):
-        self.cascPath = cascPath
-        self.datasetPath = datasetPath
-        self.trainerPath = trainerPath
+    def __init__(self):
+        self.cascPath = "cascade/haarcascade_frontalface_default.xml"
+        self.datasetPath = "dataset"
+        self.trainerPath = "trainer"
 
     # function to get the images and label data
 
