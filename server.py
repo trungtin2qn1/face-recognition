@@ -13,22 +13,24 @@ class Server(face_recognition_pb2_grpc.FaceRecognizeServiceServicer):
         return
 
     def makeDataset(self, request, context):
-        response = face_recognition_pb2.MakeDataSetResponse()
-        webcamPos = -1
-        if request.webcamPos != -1:
-            webcamPos = request.webcamPos
-        dataset = Dataset(webcamPos)
-        response.msg = dataset.make()
+        face_recognition_pb2.MakeDataSetResponse()
+        dataset = Dataset(request.webcamPos)
+        dataset.make(request.userID, request.username)
+        response = face_recognition_pb2.MakeDataSetResponse(msg="RPC Call is ok")
         return response
 
     def train(self, request, context):
+        face_recognition_pb2.TrainRequest()
         trainer = Trainer()
-        response.msg = trainer.train()
+        trainer.train()
+        response = face_recognition_pb2.TrainResponse(msg="RPC Call is ok")
         return response
 
     def faceRecognize(self, request, context):
-        recognition = Recognition(request.webcamPos)
-        response.msg = recognition.recognize()
+        face_recognition_pb2.FaceRecognizeResponse()
+        recognition = Recognition(request.webcamPos, request.subWebcamPos)
+        recognition.recognize()
+        response = face_recognition_pb2.FaceRecognizeResponse(msg="RPC Call is ok")
         return response
 
     def serve(self, port):

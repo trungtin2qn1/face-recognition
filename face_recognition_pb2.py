@@ -18,7 +18,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='protobuf',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=b'\n\x16\x66\x61\x63\x65-recognition.proto\x12\x08protobuf\"=\n\x12MakeDataSetRequest\x12\x14\n\x0clengthSample\x18\x01 \x01(\r\x12\x11\n\twebcamPos\x18\x02 \x01(\r\"\"\n\x13MakeDataSetResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t\"\x0e\n\x0cTrainRequest\"\x1c\n\rTrainResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t\")\n\x14\x46\x61\x63\x65RecognizeRequest\x12\x11\n\twebcamPos\x18\x01 \x01(\t\"$\n\x15\x46\x61\x63\x65RecognizeResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t2\xf4\x01\n\x14\x46\x61\x63\x65RecognizeService\x12L\n\x0bmakeDataset\x12\x1c.protobuf.MakeDataSetRequest\x1a\x1d.protobuf.MakeDataSetResponse\"\x00\x12:\n\x05train\x12\x16.protobuf.TrainRequest\x1a\x17.protobuf.TrainResponse\"\x00\x12R\n\rfaceRecognize\x12\x1e.protobuf.FaceRecognizeRequest\x1a\x1f.protobuf.FaceRecognizeResponse\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x16\x66\x61\x63\x65-recognition.proto\x12\x08protobuf\"I\n\x12MakeDataSetRequest\x12\x11\n\twebcamPos\x18\x01 \x01(\r\x12\x0e\n\x06userID\x18\x02 \x01(\t\x12\x10\n\x08username\x18\x03 \x01(\t\"\"\n\x13MakeDataSetResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t\"\x0e\n\x0cTrainRequest\"\x1c\n\rTrainResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t\"?\n\x14\x46\x61\x63\x65RecognizeRequest\x12\x11\n\twebcamPos\x18\x01 \x01(\r\x12\x14\n\x0csubWebcamPos\x18\x02 \x01(\r\"$\n\x15\x46\x61\x63\x65RecognizeResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t2\xf4\x01\n\x14\x46\x61\x63\x65RecognizeService\x12L\n\x0bmakeDataset\x12\x1c.protobuf.MakeDataSetRequest\x1a\x1d.protobuf.MakeDataSetResponse\"\x00\x12:\n\x05train\x12\x16.protobuf.TrainRequest\x1a\x17.protobuf.TrainResponse\"\x00\x12R\n\rfaceRecognize\x12\x1e.protobuf.FaceRecognizeRequest\x1a\x1f.protobuf.FaceRecognizeResponse\"\x00\x62\x06proto3'
 )
 
 
@@ -32,16 +32,23 @@ _MAKEDATASETREQUEST = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='lengthSample', full_name='protobuf.MakeDataSetRequest.lengthSample', index=0,
+      name='webcamPos', full_name='protobuf.MakeDataSetRequest.webcamPos', index=0,
       number=1, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='webcamPos', full_name='protobuf.MakeDataSetRequest.webcamPos', index=1,
-      number=2, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
+      name='userID', full_name='protobuf.MakeDataSetRequest.userID', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='username', full_name='protobuf.MakeDataSetRequest.username', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -58,7 +65,7 @@ _MAKEDATASETREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=36,
-  serialized_end=97,
+  serialized_end=109,
 )
 
 
@@ -88,8 +95,8 @@ _MAKEDATASETRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=99,
-  serialized_end=133,
+  serialized_start=111,
+  serialized_end=145,
 )
 
 
@@ -112,8 +119,8 @@ _TRAINREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=135,
-  serialized_end=149,
+  serialized_start=147,
+  serialized_end=161,
 )
 
 
@@ -143,8 +150,8 @@ _TRAINRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=151,
-  serialized_end=179,
+  serialized_start=163,
+  serialized_end=191,
 )
 
 
@@ -157,8 +164,15 @@ _FACERECOGNIZEREQUEST = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='webcamPos', full_name='protobuf.FaceRecognizeRequest.webcamPos', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='subWebcamPos', full_name='protobuf.FaceRecognizeRequest.subWebcamPos', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -174,8 +188,8 @@ _FACERECOGNIZEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=181,
-  serialized_end=222,
+  serialized_start=193,
+  serialized_end=256,
 )
 
 
@@ -205,8 +219,8 @@ _FACERECOGNIZERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=224,
-  serialized_end=260,
+  serialized_start=258,
+  serialized_end=294,
 )
 
 DESCRIPTOR.message_types_by_name['MakeDataSetRequest'] = _MAKEDATASETREQUEST
@@ -267,8 +281,8 @@ _FACERECOGNIZESERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=263,
-  serialized_end=507,
+  serialized_start=297,
+  serialized_end=541,
   methods=[
   _descriptor.MethodDescriptor(
     name='makeDataset',

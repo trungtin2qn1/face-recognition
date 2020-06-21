@@ -32,6 +32,7 @@ class Video:
         frame_height = int(cap.get(4))
 
         # Define the codec and create VideoWriter object.The output is stored in 'outpy.avi' file.
+        print("self.nameVideo:", self.nameVideo)
         out = cv2.VideoWriter(self.nameVideo, cv2.VideoWriter_fourcc('M','J','P','G'), 10, (frame_width,frame_height))
 
         while(True):
@@ -59,10 +60,4 @@ class Video:
         # Closes all the frames
         cv2.destroyAllWindows()
 
-video = Video("main-cam.mp4")
-subCam = Video("subcam.mp4")
-x = threading.Thread(target=subCam.make, args=(2))
-x.start()
-# thread.start_new_thread(subCam.make, (2))
-video.make(0)
-# subCam.make(2) 
+# video.make(0)

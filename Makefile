@@ -8,20 +8,11 @@ prepare:
 package:
 	pip3 install -r requirements.txt
 
-dataset-static: 
-	python3 dataset-static.py image cascade/haarcascade_frontalface_default.xml
-
-dataset-cam:
-	python3 dataset-cam.py cascade/haarcascade_frontalface_default.xml dataset/ 100 0
-
-train:
-	python3 trainer.py dataset cascade/haarcascade_frontalface_default.xml
-
-face-recognize:
-	python3 main.py trainer/trainer.yml cascade/haarcascade_frontalface_default.xml
-
 list-camera:
 	v4l2-ctl --list-devices
 
 local-run:
 	python3 main.py
+
+client:
+	python3 client.py

@@ -12,6 +12,8 @@ service FaceRecognizeService {
 //MakeDataSetRequest ...
 message MakeDataSetRequest {
     uint32 webcamPos = 1;
+    string userID = 2;
+    string username = 3;
 }
 
 //MakeDataSetResponse ...
@@ -30,7 +32,8 @@ message TrainResponse {
 
 //FaceRecognizeRequest ...
 message FaceRecognizeRequest {
-    string webcamPos = 1;
+    uint32 webcamPos = 1;
+    uint32 subWebcamPos = 2;
 }
 
 //FaceRecognizeResponse ...

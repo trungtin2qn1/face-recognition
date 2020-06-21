@@ -3,14 +3,17 @@ import numpy as np
 from PIL import Image
 import os
 import sys
+from constants.constants import Constants
 
 #trainer/
 
 class Trainer:
     def __init__(self):
-        self.cascPath = "cascade/haarcascade_frontalface_default.xml"
-        self.datasetPath = "dataset"
-        self.trainerPath = "trainer"
+        con = Constants()
+        self.cascPath = con.cascPath
+        self.datasetPath = con.datasetPath
+        self.trainerPath = con.trainerPath
+        self.trainerFile = con.trainerFile
 
     # function to get the images and label data
 
@@ -37,11 +40,7 @@ class Trainer:
         faces, ids = self.getImagesAndLabels(path, detector)
         recognizer.train(faces, np.array(ids))
         # Save the model into trainer/trainer.yml
-        recognizer.write(self.trainerPath + 'trainer.yml')
+        recognizer.write(self.trainerFile)
         # Print the numer of faces trained and end program
-        print("\n [INFO] {0} faces trained. Exiting Program".format(
+        print("\n [INFO] {0} faces trained. Finishing thread".format(
             len(np.unique(ids))))
-
-    def getTrainerPath():
-        return
-
