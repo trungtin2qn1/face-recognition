@@ -12,7 +12,8 @@ class Config:
         self.lengthSample = int(getEnv('lengthSampleStr', str(con.lengthSample)), base=10)
         self.webcamPos = int(getEnv('webcamPosStr', '0'), base=10)
         self.trainerPath =  getEnv('trainerPath', con.trainerPath)
-        self.serverPort = getEnv('trainerPath', con.serverPort)
+        self.serverPort = getEnv('serverPort', con.serverPort)
+        self.userServerPort = getEnv('userServerPort', con.userServerPort)
 
     def getCascPath(self):
         return self.cascPath

@@ -9,3 +9,4 @@ class Constants:
         self.dataDir = "leveldb/"
         self.serverPort = "2300"
         self.desktopPort = "2400"
+        self.userServerPort = "2350"

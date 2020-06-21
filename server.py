@@ -13,21 +13,18 @@ class Server(face_recognition_pb2_grpc.FaceRecognizeServiceServicer):
         return
 
     def makeDataset(self, request, context):
-        face_recognition_pb2.MakeDataSetResponse()
         dataset = Dataset(request.webcamPos)
         dataset.make(request.userID, request.username)
         response = face_recognition_pb2.MakeDataSetResponse(msg="RPC Call is ok")
         return response
 
     def train(self, request, context):
-        face_recognition_pb2.TrainRequest()
         trainer = Trainer()
         trainer.train()
         response = face_recognition_pb2.TrainResponse(msg="RPC Call is ok")
         return response
 
     def faceRecognize(self, request, context):
-        face_recognition_pb2.FaceRecognizeResponse()
         recognition = Recognition(request.webcamPos, request.subWebcamPos)
         recognition.recognize()
         response = face_recognition_pb2.FaceRecognizeResponse(msg="RPC Call is ok")
@@ -42,10 +39,10 @@ class Server(face_recognition_pb2_grpc.FaceRecognizeServiceServicer):
         print('Starting server. Listening on port ' + port)
         server.add_insecure_port('[::]:' + port)
         server.start()
+
         while True:
             
-            cmd = input('Press -1 for break: ')
-            if int(cmd) == -1:
-                break
+            print("Serving face recognition service")
+            time.sleep(5)
 
         return

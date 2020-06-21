@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package protobuf;
+
+//UserService ...
+service UserService {
+    rpc insert(InsertRequest) returns (InsertResponse) {}
+    rpc getAll(GetAllRequest) returns (GetAllResponse) {}
+    rpc getByID(GetByIDRequest) returns (GetByIDResponse) {}
+}
+
+message User {
+    string id = 1;
+    string name = 2;
+}
+
+//InsertRequest ...
+message InsertRequest {
+    string id = 1;
+    string name = 2;
+}
+
+//MakeDataSetResponse ...
+message InsertResponse {
+    string msg = 1;
+}
+
+//GetAllRequest ...
+message GetAllRequest {
+}
+
+//GetAllResponse ...
+message GetAllResponse {
+    string msg = 1;
+    repeated User users = 2;
+}
+
+//GetByIDRequest ...
+message GetByIDRequest {
+    string id = 1;
+}
+
+//GetByIDResponse ...
+message GetByIDResponse {
+    string msg = 1;
+    User user = 2;
+}

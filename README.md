@@ -24,5 +24,23 @@ Update save video
 
 **Files:**
 
+- proto
+- server.py
+- client.py
+- pb2.py
+- pb2_grpc.py
+
 **Blog:**
+
 https://www.semantics3.com/blog/a-simplified-guide-to-grpc-in-python-6c4e25f0c506/
+
+**Flow:**
+
+1. Build file .proto
+2. generate file .py with command: `python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. user-service.proto`
+3. For server part:
+   1. Use file `server.py`
+   2. Generate a rpc like an object for clients use
+4. For client part:
+   1. Use file `client.py`
+   2. Use object of server and use it method and properties

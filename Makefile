@@ -16,3 +16,6 @@ local-run:
 
 client:
 	python3 client.py
+
+client-user:
+	python3 client-user.py

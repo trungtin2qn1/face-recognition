@@ -7,11 +7,6 @@ channel = grpc.insecure_channel('localhost:2300')
 
 stub = face_recognition_pb2_grpc.FaceRecognizeServiceStub(channel)
 
-# # create a stub (client)
-# stub = calculator_pb2_grpc.CalculatorStub(channel)
-
-# Should be:
-
 cmd = input('0 for dataset \n1 for train \n2 for recognize')
 if int(cmd) == 0:
     request = face_recognition_pb2.MakeDataSetRequest(webcamPos=0, userID='1', username='tin')

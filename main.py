@@ -8,6 +8,8 @@ from services.video import Video
 from server import Server
 from constants.constants import Constants
 from utils.video import Video
+from userServer import UserServer
+from threading import Thread
 
 class Main:
     def __init__(self):
@@ -18,9 +20,24 @@ class Main:
         c = Config()
         c.load()
 
-        # Start server
+        # Start user service
+        userServer = UserServer()
+        thread1 = Thread(target = UserServer.serve, args = (userServer, c.userServerPort))
+        thread1.start()
+
+        # Start face recogntion service
         server = Server()
-        server.serve(c.serverPort)
+        thread2 = Thread(target = Server.serve, args = (server, c.serverPort))
+        thread2.start()
+
+        # thread1.join()
+        # thread2.join()
+
+        while True:
+            
+            cmd = input('Press -1 for break: ')
+            if int(cmd) == -1:
+                break
 
         return
 
