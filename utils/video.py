@@ -60,4 +60,5 @@ class Video:
         # Closes all the frames
         cv2.destroyAllWindows()
 
+# video = Video('test.mp4')
 # video.make(0)

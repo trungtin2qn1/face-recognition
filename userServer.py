@@ -12,6 +12,8 @@ class UserServer(user_service_pb2_grpc.UserServiceServicer):
 
     def insert(self, request, context):
         user = User()
+        # print("request.id: ", request.id)
+        # print("request.name: ", request.name)
         user.insertToDB(request.id, request.name)
         response = user_service_pb2.InsertResponse(msg="RPC Call is ok")
         return response
@@ -34,13 +36,12 @@ class UserServer(user_service_pb2_grpc.UserServiceServicer):
         user_service_pb2_grpc.add_UserServiceServicer_to_server(UserServer(), server)
 
         # listen on port
-        print('Starting user server. Listening on port ' + port)
         server.add_insecure_port('[::]:' + port)
         server.start()
 
         while True:
             
-            print("Serving user service")
-            time.sleep(5)
+            print('Starting user server. Listening on port ' + port)
+            time.sleep(60 * 60)
 
         return

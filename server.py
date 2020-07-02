@@ -36,13 +36,12 @@ class Server(face_recognition_pb2_grpc.FaceRecognizeServiceServicer):
         face_recognition_pb2_grpc.add_FaceRecognizeServiceServicer_to_server(Server(), server)
 
         # listen on port 50051
-        print('Starting server. Listening on port ' + port)
         server.add_insecure_port('[::]:' + port)
         server.start()
 
         while True:
             
-            print("Serving face recognition service")
-            time.sleep(5)
+            print('Starting server. Listening on port ' + port)
+            time.sleep(60 * 60)
 
         return

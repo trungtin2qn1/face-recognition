@@ -11,8 +11,9 @@ from datetime import date
 class Recognition:
 
     def __init__(self, webcamPos, subWebcamPos):
-        self.trainerPath = "trainer/trainer.yml"
-        self.cascPath = "cascade/haarcascade_frontalface_default.xml"
+        con = Constants()
+        self.trainerPath = con.trainerFile
+        self.cascPath = con.cascPath
         self.webcamPos = webcamPos
         self.subWebcamPos = subWebcamPos
 
@@ -91,7 +92,6 @@ class Recognition:
                 today = date.today()
                 day = today.strftime("%m-%d-%Y")
                 videoName = "./static/" + name + "_" + str(today) + "_" + current_time + ".mp4"
-                print(videoName)
                 video = Video(videoName)
                 video.make(self.subWebcamPos)
                 break
