@@ -33,14 +33,14 @@ class Main:
         # # thread2.join()
 
         while True:
-            
-            print("Press 0 for inserting user\n")
-            print("Press 1 for getting all user\n")
-            print("Press 2 for getting user by id\n")
-            print("Press 3 for making dataset\n")
-            print("Press 4 for training data\n")
-            print("Press 5 for recognizing\n")
-            print("Press 6 for making video\n")
+
+            print("Press 0 for inserting user\n") #TODO: @dac, call this everytime login
+            print("Press 1 for getting all user\n") # Not necessary
+            print("Press 2 for getting user by id\n") # Not necessary
+            print("Press 3 for making dataset\n") #TODO: @dac Make dataset
+            print("Press 4 for training data\n") #TODO: @dac Train data
+            print("Press 5 for recognizing\n") #TODO: @dac Recognize
+            print("Press 6 for making video\n") #TODO: @dac make video for unlocking app with finger
             cmd = input('Press -1 for break: \n')
             
             if int(cmd) == -1:
