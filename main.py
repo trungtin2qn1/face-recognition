@@ -10,6 +10,8 @@ from controllers.video import Video
 from controllers.dataset import Dataset
 from controllers.trainer import Trainer
 from controllers.recognize import Recognition
+from controllers.clientCredential import ClientCredential
+from controllers.unlock import Unlock
 class Main:
     def __init__(self):
         return
@@ -34,13 +36,15 @@ class Main:
 
         while True:
 
-            print("Press 0 for inserting user\n") #TODO: @dac, call this everytime login
-            print("Press 1 for getting all user\n") # Not necessary
-            print("Press 2 for getting user by id\n") # Not necessary
-            print("Press 3 for making dataset\n") #TODO: @dac Make dataset
-            print("Press 4 for training data\n") #TODO: @dac Train data
-            print("Press 5 for recognizing\n") #TODO: @dac Recognize
-            print("Press 6 for making video\n") #TODO: @dac make video for unlocking app with finger
+            print("Press 0 for inserting user\n") 
+            print("Press 1 for getting all user\n") 
+            print("Press 2 for getting user by id\n") 
+            print("Press 3 for making dataset\n") 
+            print("Press 4 for training data\n") 
+            print("Press 5 for recognizing\n") 
+            print("Press 6 for making video\n")
+            print("Press 7 for save client credential\n")
+            print("Press 8 for send unlock request\n")
             cmd = input('Press -1 for break: \n')
             
             if int(cmd) == -1:
@@ -75,6 +79,20 @@ class Main:
             if int(cmd) == 6:
                 video = Video()
                 video.make('1', '', 0)
+
+            if int(cmd) == 7:
+                clientCredential = ClientCredential()
+                clientCredential = clientCredential.save('1213')
+
+            if int(cmd) == 8:
+                unlock = Unlock()
+                data = {
+	                "content": "Da mo khoa thanh cong",
+	                "is_success": True
+                }
+                unlock.send('http://localhost:5000/apis/services/unlock', 
+                'ae48fe1d-9511-4951-942d-067e02e0a661',
+                '1619033275', data)
 
         return
 

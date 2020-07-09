@@ -5,3 +5,4 @@ image/
 __pycache__/
 *.py[cod]
 static/
+leveldb
